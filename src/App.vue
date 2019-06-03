@@ -1,20 +1,21 @@
 <template>
   <div id="app">
-    <img
-      alt="Vue logo"
-      src="./assets/logo.png"
-    >
-    <SliderInput />
+    <SatisfactionForm />
   </div>
 </template>
 
 <script>
-import SliderInput from './components/SliderInput.vue'
+import SatisfactionForm from './components/SatisfactionForm.vue'
 
 export default {
     name: 'App',
+    data () {
+        return {
+            isDragging: false
+        }
+    },
     components: {
-        SliderInput
+        SatisfactionForm
     }
 }
 </script>
@@ -25,7 +26,13 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  padding: 8px;
+  padding-top: 50px;
   color: #2c3e50;
-  margin-top: 60px;
+  background-color: #3E3C3F;
+  height: 100vh;
+}
+body {
+  margin: 0;
 }
 </style>

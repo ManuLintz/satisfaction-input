@@ -8,6 +8,8 @@
       :process="startFromCenter"
       :dot-size="30"
       :contained="true"
+      @drag-start="$emit('drag-start')"
+      @drag-end="$emit('drag-end')"
     >
       <template v-slot:tooltip>
         <SliderInputTooltip :satisfaction-level="satisfaction" />
