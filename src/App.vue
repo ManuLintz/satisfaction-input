@@ -4,18 +4,18 @@
       alt="Vue logo"
       src="./assets/logo.png"
     >
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <SliderInput />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SliderInput from './components/SliderInput.vue'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    name: 'App',
+    components: {
+        SliderInput
+    }
 }
 </script>
 
