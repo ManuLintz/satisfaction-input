@@ -2,17 +2,18 @@
   <div class="satisfaction-slider">
     <UnhappySmiley class="indicator-smiley" />
     <vue-slider
-      class="vue-slider"
-      v-model="satisfaction"
+      :value="value"
       :data="options"
       :process="startFromCenter"
       :dot-size="30"
       :contained="true"
+      :tooltip="'focus'"
       @drag-start="$emit('drag-start')"
       @drag-end="$emit('drag-end')"
+      @change="newValue => $emit('input', newValue)"
     >
       <template v-slot:tooltip>
-        <SliderInputTooltip :satisfaction-level="satisfaction" />
+        <SatisfactionInputTooltip :satisfaction-level="value" />
       </template>
     </vue-slider>
     <HappySmiley class="indicator-smiley" />
@@ -22,28 +23,35 @@
 <script>
 import UnhappySmiley from '@/assets/svg/smiley-unhappy.svg'
 import HappySmiley from '@/assets/svg/smiley-happy.svg'
-import SliderInputTooltip from '@/components/SliderInputTooltip'
+import SatisfactionInputTooltip from '@/components/SatisfactionInputTooltip'
 import VueSlider from 'vue-slider-component'
 import 'vue-slider-component/theme/antd.css'
 
 export default {
+    props: {
+        value: {
+            type: String,
+            required: true
+        }
+    },
     components: {
         VueSlider,
-        SliderInputTooltip,
+        SatisfactionInputTooltip,
         UnhappySmiley,
         HappySmiley
     },
     data () {
         return {
-            satisfaction: 'neutral',
             options: ['unhappy', 'fairly-unhappy', 'neutral', 'fairly-happy', 'happy'],
-            startFromCenter: dotsPos => [[50, dotsPos[0]]]
+            startFromCenter: dotsPos => [[50, dotsPos[0]]] // Passed as a prop to vue-slider-component to start the color bar from the middle
         }
     }
 }
 </script>
 
 <style lang="scss">
+@import '../sass/variables';
+
 .satisfaction-slider {
     display: flex;
     flex-direction: row;
@@ -63,19 +71,28 @@ export default {
         padding: 5px;
         height: 50px;
         path {
-           fill: #B87BF4;
-           stroke: #B87BF4;
+           fill: $PURPLE;
+           stroke: $PURPLE;
            stroke-width: 0;
         }
     }
+    /* Overrides vue-slider-component default style */
     .vue-slider-dot-handle {
         border: none;
         box-shadow: 0 3px 4px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
     }
+    .vue-slider-dot:hover .vue-slider-dot-tooltip {
+        opacity: 0;
+        visibility: hidden;
+    }
+    .vue-slider-dot:hover .vue-slider-dot-tooltip-show, .vue-slider-dot-tooltip-show {
+        opacity: 1;
+        visibility: visible;
+    }
     .vue-slider-process {
         height: 150%!important;
         top: -25%!important;
-        background: linear-gradient(0.25turn, #4ADDE8, #25fa9d);
+        background: linear-gradient(0.25turn, $SLIDER_LEFT_COLOR, $SLIDER_RIGHT_COLOR);
     }
 }
 </style>

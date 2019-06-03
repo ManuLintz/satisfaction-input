@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <SatisfactionForm />
+    <SatisfactionForm @submit="value => submittedValue = value" />
+    <p v-if="submittedValue">
+      { <br>"satisfaction": "{{ submittedValue }}"  <br> }
+    </p>
   </div>
 </template>
 
@@ -11,6 +14,7 @@ export default {
     name: 'App',
     data () {
         return {
+            submittedValue: null,
             isDragging: false
         }
     },
@@ -21,6 +25,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import './sass/variables';
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -28,11 +34,16 @@ export default {
   text-align: center;
   padding: 8px;
   padding-top: 50px;
-  color: #2c3e50;
-  background-color: #3E3C3F;
+  color: $FONT_COLOR;
+  background-color: $DARK_BACKGROUND_COLOR;
   height: 100vh;
 }
 body {
   margin: 0;
+}
+p {
+    margin-top: 30px;
+    color: $LIGHT_GREY;
+    font-size: 30px;
 }
 </style>
