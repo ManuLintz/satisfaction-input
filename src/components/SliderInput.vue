@@ -1,20 +1,25 @@
 <template>
   <div class="satisfaction-slider">
+    <UnhappySmiley class="indicator-smiley" />
     <vue-slider
+      class="vue-slider"
       v-model="satisfaction"
       :data="options"
-      :process="process1"
+      :process="startFromCenter"
       :dot-size="30"
+      :contained="true"
     >
       <template v-slot:tooltip>
         <SliderInputTooltip :satisfaction-level="satisfaction" />
       </template>
     </vue-slider>
-    <p>{{ satisfaction }}</p>
+    <HappySmiley class="indicator-smiley" />
   </div>
 </template>
 
 <script>
+import UnhappySmiley from '@/assets/svg/smiley-unhappy.svg'
+import HappySmiley from '@/assets/svg/smiley-happy.svg'
 import SliderInputTooltip from '@/components/SliderInputTooltip'
 import VueSlider from 'vue-slider-component'
 import 'vue-slider-component/theme/antd.css'
@@ -22,13 +27,15 @@ import 'vue-slider-component/theme/antd.css'
 export default {
     components: {
         VueSlider,
-        SliderInputTooltip
+        SliderInputTooltip,
+        UnhappySmiley,
+        HappySmiley
     },
     data () {
         return {
             satisfaction: 'neutral',
             options: ['unhappy', 'fairly-unhappy', 'neutral', 'fairly-happy', 'happy'],
-            process1: dotsPos => [[50, dotsPos[0]]]
+            startFromCenter: dotsPos => [[50, dotsPos[0]]]
         }
     }
 }
@@ -36,7 +43,20 @@ export default {
 
 <style lang="scss">
 .satisfaction-slider {
+    display: flex;
+    flex-direction: row;
+    .vue-slider {
+      flex-grow: 1;
+    }
     padding-top: 50px;
+    .indicator-smiley {
+        height: 25px;
+        padding-left: 10px;
+        padding-right: 10px;
+        path {
+            fill: #989898;
+        }
+    }
     .tooltip-smiley {
         padding: 5px;
         height: 50px;
@@ -46,9 +66,14 @@ export default {
            stroke-width: 0;
         }
     }
+    .vue-slider-dot-handle {
+        border: none;
+        box-shadow: 0 3px 4px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
+    }
     .vue-slider-process {
-        background: linear-gradient(0.25turn, #4ADDE8, #25D9FA);
-        // background-color: linear-gradient(0.25turn, #4ADDE8, #25D9FA);
+        height: 150%!important;
+        top: -25%!important;
+        background: linear-gradient(0.25turn, #4ADDE8, #25fa9d);
     }
 }
 </style>
