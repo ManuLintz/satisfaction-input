@@ -25,9 +25,9 @@ import UnhappySmiley from '@/assets/svg/smiley-unhappy.svg'
 import HappySmiley from '@/assets/svg/smiley-happy.svg'
 import SatisfactionInputTooltip from '@/components/SatisfactionInputTooltip'
 import VueSlider from 'vue-slider-component'
-import 'vue-slider-component/theme/antd.css'
 
 export default {
+    name: 'SatisfactionInput',
     props: {
         value: {
             type: String,
@@ -50,6 +50,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../../node_modules/vue-slider-component/theme/antd.css';
 @import '../sass/variables';
 
 .satisfaction-slider {

@@ -1,35 +1,30 @@
 <template>
   <div class="tooltip">
-    <transition
-      name="fade"
-      mode="out-in"
-    >
-      <UnhappySmiley
-        v-if="satisfactionLevel === 'unhappy'"
-        key="unhappy"
-        class="tooltip-smiley"
-      />
-      <FairlyUnhappySmiley
-        v-if="satisfactionLevel === 'fairly-unhappy'"
-        key="fairly-unhappy"
-        class="tooltip-smiley"
-      />
-      <NeutralSmiley
-        v-if="satisfactionLevel === 'neutral'"
-        key="neutral"
-        class="tooltip-smiley"
-      />
-      <HappySmiley
-        v-if="satisfactionLevel === 'happy'"
-        key="happy"
-        class="tooltip-smiley"
-      />
-      <FairlyHappySmiley
-        v-if="satisfactionLevel === 'fairly-happy'"
-        key="fairly-happy"
-        class="tooltip-smiley"
-      />
-    </transition>
+    <UnhappySmiley
+      v-if="satisfactionLevel === 'unhappy'"
+      key="unhappy"
+      class="tooltip-smiley"
+    />
+    <FairlyUnhappySmiley
+      v-if="satisfactionLevel === 'fairly-unhappy'"
+      key="fairly-unhappy"
+      class="tooltip-smiley"
+    />
+    <NeutralSmiley
+      v-if="satisfactionLevel === 'neutral'"
+      key="neutral"
+      class="tooltip-smiley"
+    />
+    <HappySmiley
+      v-if="satisfactionLevel === 'happy'"
+      key="happy"
+      class="tooltip-smiley"
+    />
+    <FairlyHappySmiley
+      v-if="satisfactionLevel === 'fairly-happy'"
+      key="fairly-happy"
+      class="tooltip-smiley"
+    />
   </div>
 </template>
 
@@ -41,6 +36,7 @@ import HappySmiley from '@/assets/svg/smiley-happy.svg'
 import FairlyHappySmiley from '@/assets/svg/smiley-fairly-happy.svg'
 
 export default {
+    name: 'SatisfactionInputTooltip',
     components: {
         UnhappySmiley,
         FairlyUnhappySmiley,

@@ -41,7 +41,7 @@ export default {
     background-color: $WHITE;
     border-radius: 10px;
     padding: 20px;
-    max-width: 900px;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
     label {
