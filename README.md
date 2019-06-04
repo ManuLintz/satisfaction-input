@@ -7,7 +7,7 @@ A VueJS component to ask your users satisfaction
 Clone or download this repo.
 
 ### Development
-First of all, you need [npm](https://www.npmjs.com/get-npm) installed.
+This project requires at least Node.js version 8.9 (or above) on your system.  You can manage multiple versions of Node on the same machine with [nvm](https://github.com/nvm-sh/nvm) or [nvm-windows](https://github.com/coreybutler/nvm-windows). You need [npm](https://www.npmjs.com/get-npm) installed.
 To install all the dependencies, run
 
 ```
